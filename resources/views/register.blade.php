@@ -26,6 +26,7 @@
         <main class="stretchable">
             <h1>Want to start managing your projects better?</h1>
             <h2>Please fill out the form below</h2>
+            <br>
             <form class="form" id="register-form" action="/register" method="post">
                 @csrf
                 <label class="form-label" for="username">Username</label><br>
