@@ -1,9 +1,19 @@
 body {
-    display: flex;
-    flex-direction: column;
     margin: 0;
     font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
+
+.ap-site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.ap-container {
+    flex: 1;
+    min-height: calc(100vh - 15px - 100px);
+}
+
 
 .link {
     color: #363636;
@@ -53,8 +63,9 @@ body {
 }
 
 #nav-active {
-    background-color: #821A1B;
+    background-color: #d20163;
     color: white;
+    border: 1px solid #d20163;
 }
 
 .nav-entry {
@@ -65,16 +76,19 @@ body {
     padding-right: 10px;
     padding-top: 10px;
     text-decoration: none;
+    border: 1px solid #363636;
 }
 
 .nav-entry:hover {
     background-color: white;
     color: #363636;
+    border: 1px solid white;
+    border-bottom: 1px solid #d20163;
 }
 
 /* Hero */
 .hero {
-    background-color: #821A1B;
+    background-color: #d20163;
     padding-top: 20px;
     padding-bottom: 30px;
 }
@@ -170,29 +184,29 @@ main ul {
 }
 
 /* Forms */
-.form .form-label::before{
+.form-label::before{
     content: '/ ';
     font-size: 17px;
     font-weight:900;
 }
 
-.form .form-label {
+.form-label {
     padding-left: 70px;
 }
 
-.form input, .form textarea, .form .form-submit {
+.form input, .form textarea, .form-submit {
     margin-top: 5px;
     margin-left: 80px;
 }
 
-.form .form-regular {
+.form-regular {
     width: 400px;
     padding: 5px;
     border: none;
     border-bottom: 2px solid #363636;
 }
 
-.form .form-large {
+.form-large {
     width: 400px;
     padding: 15px;
     height: 100px;
@@ -200,13 +214,25 @@ main ul {
     border-bottom: 2px solid #363636;
 }
 
-.form .form-submit {
+.form-submit {
     background-color: #363636;
     color: white;
     padding: 20px;
     width: 400px;
-    border: none;
     font-size: 17px;
+    cursor: pointer;
+    border: 1px solid #363636;
+}
+
+.form-submit:hover {
+    background-color: #4a4a4a;
+    border: 1px solid #4a4a4a;
+}
+
+.form-submit:active {
+    background-color: white;
+    color: #363636;
+    border: 1px solid #363636;
 }
 
 .form-error {
@@ -225,4 +251,14 @@ main ul {
 
 #form-white {
     color: white;
+}
+
+.form-inline-error {
+    margin-left: 80px;
+    color: red;
+}
+
+.form-inline-error-button {
+    margin-left: 80px;
+    color: red;
 }

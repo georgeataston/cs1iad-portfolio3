@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class User extends Model
+class Project extends Model
 {
     use HasFactory;
 
@@ -15,14 +14,14 @@ class User extends Model
      *
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'projects';
 
     /**
      * The primary key associated with the table.
      *
      * @var string
      */
-    protected $primaryKey = 'uid';
+    protected $primaryKey = 'pid';
 
     /**
      * Indicates if the model should be timestamped.
@@ -31,9 +30,5 @@ class User extends Model
      */
     public $timestamps = false;
 
-    public function projects(): HasMany
-    {
-        return $this->hasMany(Project::class);
-    }
 
 }

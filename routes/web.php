@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\ReverseUserAuthCheck;
 use App\Http\Middleware\UserAuthCheck;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -24,5 +25,7 @@ Route::post('/login', [UserController::class, 'authenticate'])->middleware(Rever
 Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/dashboard', function() {
-    return view('dashboard');
+    $user = User::where('uid', '=', session('id'))->first();
+    $projects = $user->projects;
+    return view('dashboard')->with('projects', $projects);
 })->middleware(UserAuthCheck::class);

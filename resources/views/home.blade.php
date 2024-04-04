@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>AProject</title>
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
+    <title>AProject</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="ap-site">
+    <main class="ap-container">
         <div class="nav">
             <a class="nav-front">AProject</a>
             <div class="nav-back">
@@ -21,6 +22,7 @@
                 @endif
             </div>
         </div>
+
         <header class="hero">
             <div class="stretchable">
                 <h1>AProject</h1>
@@ -28,13 +30,13 @@
             </div>
         </header>
 
-        <main class="stretchable">
+        <div class="stretchable">
             <h1>Welcome</h1>
             <p>
                 Welcome to AProject, an easy-to-use project management system. To get started, please register for an account. If you have already done this, click login.
             </p>
-        </main>
-    </body>
-
-    @include("footer");
+        </div>
+    </main>
+    @include("footer")
+</body>
 </html>

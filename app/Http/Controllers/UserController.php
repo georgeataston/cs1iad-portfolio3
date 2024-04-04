@@ -15,15 +15,11 @@ class UserController extends Controller
         $username = $request->input("username");
         $password = $request->input("password");
 
-        if (!preg_match("^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$^", $email)) {
-            return redirect('register')->with('success', 'false')->with('message', 'Please supply a valid e-mail address');
-        }
-
-        if (User::where('email', '=', $email)->exists()) {
-            return redirect('register')->with('success', 'false')->with('message', 'E-mail already in use.');
-        } else if (User::where('username', '=', $username)->exists()) {
-            return redirect('register')->with('success', 'false')->with('message', 'Username already in use.');
-        }
+        $request->validate([
+            'email' => 'required|email|unique:users',
+            'username' => 'required|unique:users',
+            'password' => 'required'
+        ]);
 
         $user = new User;
         $user->email = $email;
@@ -36,17 +32,17 @@ class UserController extends Controller
 
     public function authenticate(Request $request): RedirectResponse {
         $credentials = $request->validate([
-            'username' => ['required'],
-            'password' => ['required'],
+            'username' => 'required',
+            'password' => 'required',
         ]);
 
         $user = User::where('username', '=', $credentials['username'])->first();
         if (!$user) {
-            return back()->with('success', 'false')->with('message', 'Username or password is incorrect');
+            return back()->withErrors(['login' => 'Username or password is incorrect'])->withInput();
         }
 
         if (!Hash::check($credentials['password'], $user->password)) {
-            return back()->with('success', 'false')->with('message', 'Username or password is incorrect');
+            return back()->withErrors(['login' => 'Username or password is incorrect'])->withInput();
         }
 
         $request->session()->regenerate();
