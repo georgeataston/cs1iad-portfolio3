@@ -208,3 +208,21 @@ main ul {
     border: none;
     font-size: 17px;
 }
+
+.form-error {
+    background-color: red;
+    color: white;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.form-success {
+    background-color: green;
+    color: white;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+#form-white {
+    color: white;
+}

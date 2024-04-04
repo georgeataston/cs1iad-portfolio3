@@ -12,14 +12,19 @@
             <a class="nav-front">AProject</a>
             <div class="nav-back">
                 <a class="nav-entry" id="nav-active" href="/">Home</a>
-                <a class="nav-entry" href="/login">Login</a>
-                <a class="nav-entry" href="/register">Register</a>
+                @if(session('id') == null)
+                    <a class="nav-entry" href="/login">Login</a>
+                    <a class="nav-entry" href="/register">Register</a>
+                @else
+                    <a class="nav-entry" href="/dashboard">Dashboard</a>
+                    <a class="nav-entry" href="/logout">Logout</a>
+                @endif
             </div>
         </div>
         <header class="hero">
             <div class="stretchable">
                 <h1>AProject</h1>
-                <h2>Aston Computer Scinece Project Management</h2>
+                <h2>Aston Computer Science Project Management</h2>
             </div>
         </header>
 
