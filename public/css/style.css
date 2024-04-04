@@ -65,7 +65,6 @@ body {
 #nav-active {
     background-color: #d20163;
     color: white;
-    border: 1px solid #d20163;
 }
 
 .nav-entry {
@@ -76,14 +75,37 @@ body {
     padding-right: 10px;
     padding-top: 10px;
     text-decoration: none;
-    border: 1px solid #363636;
 }
 
 .nav-entry:hover {
     background-color: white;
     color: #363636;
-    border: 1px solid white;
-    border-bottom: 1px solid #d20163;
+}
+
+@supports (-moz-appearance:none) {
+    #nav-active {
+        background-color: #d20163;
+        color: white;
+        border: 1px solid #d20163;
+    }
+
+    .nav-entry {
+        color: white;
+        font-size: 20px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        text-decoration: none;
+        border: 1px solid #363636;
+    }
+
+    .nav-entry:hover {
+        background-color: white;
+        color: #363636;
+        border: 1px solid white;
+        border-bottom: 1px solid #d20163;
+    }
 }
 
 /* Hero */
