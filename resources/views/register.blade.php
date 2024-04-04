@@ -38,17 +38,17 @@
             <form class="form" id="register-form" action="/register" method="post">
                 @csrf
                 <label class="form-label" for="username">Username</label><br>
-                <input class="form-regular" type="text" id="username" name="username" value="{{old('username')}} "/>
+                <input class="form-regular form-noselect" type="text" id="username" name="username" value="{{old('username')}} "/>
                 @error('username')<br><span class="form-inline-error">{{ $message }}</span><br>@enderror
 
                 <br><br>
                 <label class="form-label" for="email">E-mail</label><br>
-                <input class="form-regular" type="text" id="email" name="email" value="{{old('email')}}" />
+                <input class="form-regular form-noselect" type="text" id="email" name="email" value="{{old('email')}}" />
                 @error('email')<br><span class="form-inline-error">{{ $message }}</span><br>@enderror
 
                 <br><br>
                 <label class="form-label" for="password">Password</label><br>
-                <input class="form-regular" type="password" id="password" name="password" value="{{old('password')}}" />
+                <input class="form-regular form-noselect" type="password" id="password" name="password" value="{{old('password')}}" />
                 @error('password')<br><span class="form-inline-error">{{ $message }}</span><br>@enderror
 
                 <br><br>

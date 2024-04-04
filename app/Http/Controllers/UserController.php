@@ -11,20 +11,16 @@ class UserController extends Controller
 {
     public function create(Request $request): RedirectResponse
     {
-        $email = $request->input("email");
-        $username = $request->input("username");
-        $password = $request->input("password");
-
-        $request->validate([
+        $input = $request->validate([
             'email' => 'required|email|unique:users',
             'username' => 'required|unique:users',
             'password' => 'required'
         ]);
 
         $user = new User;
-        $user->email = $email;
-        $user->username = $username;
-        $user->password = Hash::make($password);
+        $user->email = $input['email'];
+        $user->username = $input['username'];
+        $user->password = Hash::make($input['password']);
         $user->save();
 
         return redirect('login')->with('success', 'true');
