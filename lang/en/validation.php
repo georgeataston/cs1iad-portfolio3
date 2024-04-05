@@ -188,7 +188,9 @@ return [
     */
 
     'attributes' => [
-        'confirm_password' => 'confirm password'
+        'confirm_password' => 'confirm password',
+        'start_date' => 'start date',
+        'end_date' => 'end date'
     ],
 
 ];

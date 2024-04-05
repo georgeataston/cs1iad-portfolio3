@@ -42,14 +42,14 @@
                 @error('title')<br><span class="form-inline-error">{{ $message }}</span><br>@enderror
 
                 <br><br>
-                <label class="form-label" for="startdate">Start Date</label><br>
-                <input class="form-regular form-noselect" type="date" id="startdate" name="startdate" value="{{old('startdate')}}" />
-                @error('startdate')<br><span class="form-inline-error">{{ $message }}</span><br>@enderror
+                <label class="form-label" for="start_date">Start Date</label><br>
+                <input class="form-regular form-noselect" type="date" id="start_date" name="start_date" value="{{old('start_date')}}" />
+                @error('start_date')<br><span class="form-inline-error">{{ $message }}</span><br>@enderror
 
                 <br><br>
-                <label class="form-label" for="enddate">End Date</label><br>
-                <input class="form-regular form-noselect" type="date" id="enddate" name="enddate" value="{{old('enddate')}}" />
-                @error('enddate')<br><span class="form-inline-error">{{ $message }}</span><br>@enderror
+                <label class="form-label" for="end_date">End Date</label><br>
+                <input class="form-regular form-noselect" type="date" id="end_date" name="end_date" value="{{old('end_date')}}" />
+                @error('end_date')<br><span class="form-inline-error">{{ $message }}</span><br>@enderror
 
                 <br><br>
                 <label class="form-label" for="description">Description</label><br>
