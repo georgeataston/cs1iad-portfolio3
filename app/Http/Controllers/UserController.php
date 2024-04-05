@@ -14,8 +14,14 @@ class UserController extends Controller
         $input = $request->validate([
             'email' => 'required|email|unique:users',
             'username' => 'required|unique:users',
-            'password' => 'required'
+            'password' => 'required',
+            'confirm_password' => 'required'
         ]);
+
+
+        if ($input['password'] != $input['confirm_password']) {
+            return back()->withErrors(['confirm_password' => 'Passwords do not match.'])->withInput();
+        }
 
         $user = new User;
         $user->email = $input['email'];

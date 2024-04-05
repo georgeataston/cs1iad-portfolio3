@@ -14,10 +14,12 @@ body {
     min-height: calc(100vh - 15px - 100px);
 }
 
+.breadcrum-back {
+    font-size: 15px;
+}
 
 .link {
     color: #363636;
-    text-decoration-style: underline;
 }
 
 .link:hover {
@@ -28,13 +30,22 @@ body {
 
 .link-white {
     color: white;
-    text-decoration-style: underline;
 }
 
 .link-white:hover {
     text-decoration-style: wavy;
     text-decoration-color: white;
     color: white;
+}
+
+.link-grey {
+    color: hsl(0deg, 0%, 21%);
+}
+
+.link-grey:hover {
+    text-decoration-style: wavy;
+    text-decoration-color: grey;
+    color: hsl(0deg, 0%, 21%);
 }
 
 /* Nav bar */
@@ -205,6 +216,25 @@ main ul {
     font-size: 17px;
 }
 
+table {
+    padding-left: 80px;
+    font-size: 17px;
+    width: 100%;
+}
+
+table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #600064;
+    color: white;
+}
+
 /* Forms */
 .form-label::before{
     content: '/ ';
@@ -248,6 +278,7 @@ main ul {
     font-size: 17px;
     cursor: pointer;
     border: 1px solid #363636;
+    text-decoration: none;
 }
 
 .form-submit:hover {

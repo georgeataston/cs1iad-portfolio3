@@ -17,18 +17,39 @@
                 <a class="nav-entry" href="/logout">Logout</a>
             </div>
         </div>
+
         <header class="hero">
             <div class="stretchable">
                 <h1>Dashboard</h1>
                 <h2>Please select a project, or create a new one</h2>
             </div>
         </header>
+
         <div class="stretchable">
             @if($projects->isEmpty())
                 <p>You don't have any projects.</p>
+            @else
+                <p>Select the title of the project below to view its details and manage its status.</p>
+                <table>
+                    <tr>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Phase</th>
+                    </tr>
+                    @foreach ($projects as $project)
+                        <tr>
+                            <td><a href="/project/{{$project->pid}}" class="link">{{$project->title}}</a></td>
+                            <td>{{$project->start_date}}</td>
+                            <td>{{$project->end_date}}</td>
+                            <td>{{$project->phase}}</td>
+                        </tr>
+                    @endforeach
+                </table>
+                <br>
             @endif
             <br>
-            <a href="/dashboard/create" class="form-submit">Create Project</a>
+            <a href="/project/create" class="form-submit">Create Project</a>
             <br><br><br>
         </div>
     </main>

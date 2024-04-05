@@ -52,6 +52,11 @@
                 @error('password')<br><span class="form-inline-error">{{ $message }}</span><br>@enderror
 
                 <br><br>
+                <label class="form-label" for="confirm_password">Confirm Password</label><br>
+                <input class="form-regular form-noselect" type="password" id="confirm_password" name="confirm_password" value="{{old('confirm_password')}}" />
+                @error('confirm_password')<br><span class="form-inline-error">{{ $message }}</span><br>@enderror
+
+                <br><br>
                 <button class="form-submit">Submit</button>
                 <br><br>
             </form>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
 use App\Http\Middleware\ReverseUserAuthCheck;
 use App\Http\Middleware\UserAuthCheck;
 use App\Models\User;
@@ -29,3 +30,9 @@ Route::get('/dashboard', function() {
     $projects = $user->projects;
     return view('dashboard')->with('projects', $projects);
 })->middleware(UserAuthCheck::class);
+
+Route::get('/project/create', function() {
+    return view('project_create');
+})->middleware(UserAuthCheck::class);
+
+Route::post('/project/create', [ProjectController::class, 'create'])->middleware(UserAuthCheck::class);
