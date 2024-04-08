@@ -38,7 +38,7 @@
                     <h2 id="form-white">{{ session('message') }}</h2>
                 </div>
             @endif
-            <h1>Please log in with the form below</h1>
+            <h1>Please log in with the form below.</h1>
             <br>
             <form class="form" id="login-form" action="/login" method="post">
                 @csrf

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -25,6 +27,62 @@ class ProjectController extends Controller
         $project->user_uid = $request->session()->get('id');
         $project->save();
 
-        return redirect('/projects/' . $project->pid);
+        return redirect('/project/' . $project->pid);
+    }
+
+    public function update(Request $request, int $id): RedirectResponse {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:100',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'description' => 'required|max:255',
+            'phase' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->with('old', 'true')->withInput();
+        }
+
+        if (!($request->phase == "Not Started" || $request->phase == "In Progress" || $request->phase == "Complete")) {
+            return back()->withErrors(['phase' => 'Please select a valid phase'])->withInput();
+        }
+
+        $project = Project::where('pid', '=', $id)->first();
+        if ($project == null) {
+            abort(404);
+        }
+
+        $user = User::where('uid', '=', session('id'))->first();
+
+        if ($project->user_uid != $user->uid) {
+            abort(403);
+        }
+
+        $project->title = $request->title;
+        $project->start_date = $request->start_date;
+        $project->end_date = $request->end_date;
+        $project->description = $request->description;
+        $project->phase = $request->phase;
+        $project->update();
+
+        return redirect('/project/' . $project->pid)->with('success', 'true');
+    }
+
+    public function delete(Request $request, int $id): RedirectResponse {
+        $project = Project::where('pid', '=', $id)->first();
+        if ($project == null) {
+            abort(404);
+        }
+
+        $user = User::where('uid', '=', session('id'))->first();
+
+        if ($project->user_uid != $user->uid) {
+            abort(403);
+        }
+
+        $title = $project->title;
+        $project->delete();
+
+        return redirect('/dashboard')->with('delete', $title);
     }
 }

@@ -33,7 +33,7 @@
                     <h2 id="form-white">{{ session('message') }}</h2>
                 </div>
             @endif
-            <h1>Create a new project by filling out the below form</h1>
+            <h1>Create a new project by filling out the below form.</h1>
             <br>
             <form class="form" id="create-form" action="/project/create" method="post">
                 @csrf

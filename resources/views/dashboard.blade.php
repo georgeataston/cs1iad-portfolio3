@@ -26,6 +26,13 @@
         </header>
 
         <div class="stretchable">
+            @if (session('delete'))
+                <div class="form-success">
+                    <h1 id="form-white">Deletion Successful</h1>
+                    <h2 id="form-white">{{session('delete')}} has been deleted.</h2>
+                </div>
+                <br>
+            @endif
             @if($projects->isEmpty())
                 <p>You don't have any projects.</p>
             @else
