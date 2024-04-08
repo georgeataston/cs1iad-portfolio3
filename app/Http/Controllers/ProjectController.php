@@ -85,4 +85,30 @@ class ProjectController extends Controller
 
         return redirect('/dashboard')->with('delete', $title);
     }
+
+    public function search(Request $request): RedirectResponse {
+        if ($request->title == null && $request->start_date == null) {
+            return back()->withErrors(['submit' => 'Please use one of the above fields.'])->withInput();
+        }
+
+        if ($request->title != null && $request->start_date != null) {
+            return back()->withErrors(['submit' => 'Please only use one of the above fields.'])->withInput();
+        }
+
+        if ($request->title != null) {
+            $input = $request->validate([
+                'title' => 'string|max:100'
+            ]);
+
+            $projects = Project::where('title', 'LIKE', '%' . $input['title'] . '%')->where('user_uid', '=', session('id'))->get();
+            return back()->withInput()->with('projects', $projects);
+        } else {
+            $input = $request->validate([
+                'start_date' => 'date'
+            ]);
+
+            $projects = Project::where('start_date', '=', $input['start_date'])->where('user_uid', '=', session('id'))->get();
+            return back()->withInput()->with('projects', $projects);
+        }
+    }
 }

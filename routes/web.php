@@ -44,6 +44,14 @@ Route::get('/project/create', function() {
 
 Route::post('/project/create', [ProjectController::class, 'create'])->middleware(UserAuthCheck::class);
 
+// Project Search
+
+Route::get('/project/search', function() {
+    return view('project_search');
+})->middleware(UserAuthCheck::class);
+
+Route::post('/project/search', [ProjectController::class, 'search'])->middleware(UserAuthCheck::class);
+
 // View / Edit / Delete a project
 
 Route::get('/project/{id}', function (string $id) {
@@ -94,3 +102,4 @@ Route::get('/project/{id}/delete', function (string $id) {
 })->middleware(UserAuthCheck::class);
 
 Route::post('/project/{id}/delete', [ProjectController::class, 'delete'])->middleware(UserAuthCheck::class);
+

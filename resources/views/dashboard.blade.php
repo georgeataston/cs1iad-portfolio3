@@ -31,11 +31,17 @@
                     <h1 id="form-white">Deletion Successful</h1>
                     <h2 id="form-white">{{session('delete')}} has been deleted.</h2>
                 </div>
-                <br>
             @endif
             @if($projects->isEmpty())
                 <p>You don't have any projects.</p>
+                <br>
+                <a href="/project/create" class="form-submit-multi">Create Project</a>
+                <a href="/project/search" class="form-submit-multi">Project Search</a>
             @else
+                <br><br>
+                <a href="/project/create" class="form-submit-multi">Create Project</a>
+                <a href="/project/search" class="form-submit-multi">Project Search</a>
+                <br><br>
                 <p>Select the title of the project below to view its details and manage its status.</p>
                 <table>
                     <tr>
@@ -55,8 +61,6 @@
                 </table>
                 <br>
             @endif
-            <br>
-            <a href="/project/create" class="form-submit">Create Project</a>
             <br><br><br>
         </div>
     </main>
