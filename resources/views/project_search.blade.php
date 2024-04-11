@@ -54,7 +54,6 @@
             @if(session('projects'))
                 @php
                     $projects = session('projects');
-                    error_log($projects)
                 @endphp
                 @if($projects->isEmpty())
                     <p>No projects matched your search query.</p>
