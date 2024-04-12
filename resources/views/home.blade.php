@@ -14,10 +14,12 @@
             <div class="nav-back">
                 <a class="nav-entry" id="nav-active" href="/">Home</a>
                 @if(session('id') == null)
+                    <a class="nav-entry" href="/projects">Projects</a>
                     <a class="nav-entry" href="/login">Login</a>
                     <a class="nav-entry" href="/register">Register</a>
                 @else
                     <a class="nav-entry" href="/dashboard">Dashboard</a>
+                    <a class="nav-entry" href="/projects">Projects</a>
                     <a class="nav-entry" href="/logout">Logout</a>
                 @endif
             </div>
@@ -34,6 +36,10 @@
             <h1>Welcome</h1>
             <p>
                 Welcome to AProject, an easy-to-use project management system. To get started, please register for an account. If you have already done this, click login.
+            </p>
+            <h1>Active projects?</h1>
+            <p>
+                To view all active projects, please select projects above.
             </p>
         </div>
     </main>

@@ -36,6 +36,12 @@ Route::get('/dashboard', function() {
     return view('dashboard')->with('projects', $projects);
 })->middleware(UserAuthCheck::class);
 
+// Public Projects view
+Route::get('/projects', function() {
+    $projects = Project::where('phase', '!=', 'Complete')->get();
+    return view('projects')->with('projects', $projects);
+});
+
 // Project Creation
 
 Route::get('/project/create', function() {
@@ -48,26 +54,24 @@ Route::post('/project/create', [ProjectController::class, 'create'])->middleware
 
 Route::get('/project/search', function() {
     return view('project_search');
-})->middleware(UserAuthCheck::class);
+});
 
-Route::post('/project/search', [ProjectController::class, 'search'])->middleware(UserAuthCheck::class);
+Route::post('/project/search', [ProjectController::class, 'search']);
 
 // View / Edit / Delete a project
 
 Route::get('/project/{id}', function (string $id) {
     $project = Project::where('pid', '=', $id)->first();
-    if ($project == null) {
-        abort(404);
-    }
 
-    $user = User::where('uid', '=', session('id'))->first();
+    $enableControls = $project->user_uid == session('id');
+    $projOwner = User::where('uid', '=', $project->user_uid)->first();
+    $projUser = $projOwner->username;
+    $projEmail = "please login to view e-mail";
+    if (session('id'))
+        $projEmail = $projOwner->email;
 
-    if ($project->user_uid != $user->uid) {
-        abort(403);
-    }
-
-    return view('project_view')->with('project', $project);
-})->middleware(UserAuthCheck::class);
+    return view('project_view')->with('project', $project)->with('enableControls', $enableControls)->with('projUser', $projUser)->with('projEmail', $projEmail);
+});
 
 Route::get('/project/{id}/edit', function (string $id) {
     $project = Project::where('pid', '=', $id)->first();
@@ -75,9 +79,7 @@ Route::get('/project/{id}/edit', function (string $id) {
         abort(404);
     }
 
-    $user = User::where('uid', '=', session('id'))->first();
-
-    if ($project->user_uid != $user->uid) {
+    if ($project->user_uid != session('id')) {
         abort(403);
     }
 
@@ -92,9 +94,7 @@ Route::get('/project/{id}/delete', function (string $id) {
         abort(404);
     }
 
-    $user = User::where('uid', '=', session('id'))->first();
-
-    if ($project->user_uid != $user->uid) {
+    if ($project->user_uid != session('id')) {
         abort(403);
     }
 

@@ -13,6 +13,7 @@
             <a class="nav-front">AProject</a>
             <div class="nav-back">
                 <a class="nav-entry" href="/">Home</a>
+                <a class="nav-entry" href="/projects">Projects</a>
                 <a class="nav-entry" href="/login">Login</a>
                 <a class="nav-entry" id="nav-active" href="/register">Register</a>
             </div>

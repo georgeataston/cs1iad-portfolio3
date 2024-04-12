@@ -13,8 +13,15 @@
         <a class="nav-front">AProject</a>
         <div class="nav-back">
             <a class="nav-entry" href="/">Home</a>
-            <a class="nav-entry" href="/dashboard">Dashboard</a>
-            <a class="nav-entry" href="/logout">Logout</a>
+            @if(session('id') == null)
+                <a class="nav-entry" id="nav-active" href="/projects">Projects</a>
+                <a class="nav-entry" href="/login">Login</a>
+                <a class="nav-entry" href="/register">Register</a>
+            @else
+                <a class="nav-entry" href="/dashboard">Dashboard</a>
+                <a class="nav-entry" id="nav-active" href="/projects">Projects</a>
+                <a class="nav-entry" href="/logout">Logout</a>
+            @endif
         </div>
     </div>
 
@@ -26,7 +33,11 @@
     </header>
 
     <div class="stretchable">
-        <p class="breadcrum-back"><a href="/dashboard" class="link-grey">&lt back</a></p>
+        @if($enableControls)
+            <p class="breadcrum-back"><a href="/dashboard" class="link-grey">&lt back</a></p>
+        @else
+            <p class="breadcrum-back"><a href="{{back()->getTargetUrl()}}" class="link-grey">&lt back</a></p>
+        @endif
         @if (session('success') == "true")
             <div class="form-success">
                 <h1 id="form-white">Edit Successful</h1>
@@ -55,11 +66,14 @@
             @error('description')<br><span class="form-inline-error">{{ $message }}</span><br>@enderror
 
             <br><br>
-            <label class="form-label">The current status of your project is {{$project->phase}}.</label>
-            <br><br>
-            @error('login')<span class="form-inline-error-button">{{ $message }}</span><br>@enderror
-            <button class="form-submit-multi" >Edit</button>
-            <button class="form-submit-multi" formaction="/project/{{$project->pid}}/delete" formmethod="get">Delete</button>
+            <label class="form-label">The current status of this project is {{$project->phase}}.</label>
+            <br>
+            <label class="form-label">This project is managed by {{$projUser}} ({{$projEmail}}).</label>
+            @if($enableControls)
+                <br><br>
+                <button class="form-submit-multi" >Edit</button>
+                <button class="form-submit-multi" formaction="/project/{{$project->pid}}/delete" formmethod="get">Delete</button>
+            @endif
             <br><br>
         </form>
     </div>

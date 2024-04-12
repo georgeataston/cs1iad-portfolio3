@@ -14,6 +14,7 @@
         <div class="nav-back">
             <a class="nav-entry" href="/">Home</a>
             <a class="nav-entry" href="/dashboard">Dashboard</a>
+            <a class="nav-entry" id="nav-active" href="/projects">Projects</a>
             <a class="nav-entry" href="/logout">Logout</a>
         </div>
     </div>

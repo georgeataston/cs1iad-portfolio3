@@ -100,14 +100,14 @@ class ProjectController extends Controller
                 'title' => 'string|max:100'
             ]);
 
-            $projects = Project::where('title', 'LIKE', '%' . $input['title'] . '%')->where('user_uid', '=', session('id'))->get();
+            $projects = Project::where('title', 'LIKE', '%' . $input['title'] . '%')->get();
             return back()->withInput()->with('projects', $projects);
         } else {
             $input = $request->validate([
                 'start_date' => 'date'
             ]);
 
-            $projects = Project::where('start_date', '=', $input['start_date'])->where('user_uid', '=', session('id'))->get();
+            $projects = Project::where('start_date', '=', $input['start_date'])->get();
             return back()->withInput()->with('projects', $projects);
         }
     }
