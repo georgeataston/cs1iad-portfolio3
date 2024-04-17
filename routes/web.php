@@ -61,7 +61,12 @@ Route::post('/project/search', [ProjectController::class, 'search']);
 // View / Edit / Delete a project
 
 Route::get('/project/{id}', function (string $id) {
+    if (!is_numeric($id))
+        abort('418');
+
     $project = Project::where('pid', '=', $id)->first();
+    if ($project == null)
+        abort('404');
 
     $enableControls = $project->user_uid == session('id');
     $projOwner = User::where('uid', '=', $project->user_uid)->first();
@@ -74,6 +79,9 @@ Route::get('/project/{id}', function (string $id) {
 });
 
 Route::get('/project/{id}/edit', function (string $id) {
+    if (!is_numeric($id))
+        abort('418');
+
     $project = Project::where('pid', '=', $id)->first();
     if ($project == null) {
         abort(404);
@@ -89,6 +97,9 @@ Route::get('/project/{id}/edit', function (string $id) {
 Route::post('/project/{id}/edit', [ProjectController::class, 'update'])->middleware(UserAuthCheck::class);
 
 Route::get('/project/{id}/delete', function (string $id) {
+    if (!is_numeric($id))
+        abort('418');
+
     $project = Project::where('pid', '=', $id)->first();
     if ($project == null) {
         abort(404);
