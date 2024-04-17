@@ -13,9 +13,15 @@
             <a class="nav-front">AProject</a>
             <div class="nav-back">
                 <a class="nav-entry" href="/">Home</a>
-                <a class="nav-entry" href="/dashboard">Dashboard</a>
-                <a class="nav-entry" id="nav-active" href="/projects">Projects</a>
-                <a class="nav-entry" href="/logout">Logout</a>
+                @if(session('id') == null)
+                    <a class="nav-entry" id="nav-active" href="/projects">Projects</a>
+                    <a class="nav-entry" href="/login">Login</a>
+                    <a class="nav-entry" href="/register">Register</a>
+                @else
+                    <a class="nav-entry" href="/dashboard">Dashboard</a>
+                    <a class="nav-entry" id="nav-active" href="/projects">Projects</a>
+                    <a class="nav-entry" href="/logout">Logout</a>
+                @endif
             </div>
         </div>
 
